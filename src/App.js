@@ -5,7 +5,7 @@ import './App.css';
 import './reset.css'
 import db from './firebase_config';
 import { useState } from 'react/cjs/react.development';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 
 
@@ -19,12 +19,7 @@ function App() {
   useEffect(()=>{
     getTodos();
   },[])
-  
-  // Focus
-  const inputRef = useRef(null)
-    useEffect(() => {
-    inputRef.current.focus()
-  })
+
 
   function getTodos(){
     db.collection("todos").onSnapshot(function(querySnapshot){
@@ -112,7 +107,6 @@ function handleOnProgress(){
         <div className='todo'>
         <form >
           <input
-          ref={inputRef}
           value={todoInput}
           onChange={(e) => {
             setTodoInput(e.target.value)
